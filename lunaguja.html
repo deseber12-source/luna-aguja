@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Luna y Aguja · Vista previa de diseño</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- VARIABLES CSS (identidad visual) ---------- */
+    :root {
+      --negro-mate: #0A0A0F;
+      --violeta-neon: #B13EFF;
+      --violeta-neon-glow: #C55AFF;
+      --plata: #E6E6EA;
+      --plata-oscuro: #B0B0B8;
+      --gris-suave: #1E1E24;
+      --blanco: #FFFFFF;
+      
+      --fuente-titulos: 'Montserrat', sans-serif;
+      --fuente-texto: 'Open Sans', sans-serif;
+      --fuente-manuscrita: 'Pacifico', cursive;
+      
+      --transition: all 0.25s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: var(--negro-mate);
+      color: var(--plata);
+      font-family: var(--fuente-texto);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    /* ========== HEADER ========== */
+    .header {
+      background: rgba(10, 10, 15, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(177, 62, 255, 0.25);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+    }
+    
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    
+    .logo-icon {
+      font-size: 2rem;
+      color: var(--violeta-neon);
+      filter: drop-shadow(0 0 4px rgba(177, 62, 255, 0.6));
+    }
+    
+    .logo-text {
+      font-family: var(--fuente-titulos);
+      font-size: 1.7rem;
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--plata) 0%, #FFFFFF 80%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-menu ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    
+    .nav-menu a {
+      color: var(--plata);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+      padding-bottom: 4px;
+    }
+    
+    .nav-menu a:hover {
+      color: var(--violeta-neon);
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--violeta-neon);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    /* ========== AVISO PREVIEW ========== */
+    .preview-badge {
+      background: rgba(177, 62, 255, 0.15);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      padding: 0.6rem;
+      font-size: 0.8rem;
+      border-bottom: 1px solid rgba(177, 62, 255, 0.3);
+      color: #D0D0FF;
+      letter-spacing: 0.5px;
+    }
+    
+    .preview-badge i {
+      margin: 0 6px;
+      color: var(--violeta-neon);
+    }
+    
+    /* ========== HERO GEOMÉTRICO ========== */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle at 30% 10%, #0C0C12, #020203);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .shape {
+      position: absolute;
+      background: var(--violeta-neon);
+      opacity: 0.25;
+      filter: blur(40px);
+      border-radius: 50%;
+      animation: floatShape 18s infinite alternate ease-in-out;
+    }
+    
+    .shape-1 { width: 280px; height: 280px; top: 10%; left: -5%; opacity: 0.3; filter: blur(55px); }
+    .shape-2 { width: 400px; height: 400px; bottom: -15%; right: -10%; opacity: 0.2; filter: blur(70px); }
+    .shape-3 { width: 180px; height: 180px; top: 50%; left: 70%; opacity: 0.35; filter: blur(45px); animation-duration: 22s; }
+    .shape-4 { width: 320px; height: 320px; bottom: 20%; left: -8%; opacity: 0.2; filter: blur(65px); animation-duration: 20s; }
+    .shape-triangle {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 120px solid transparent;
+      border-right: 120px solid transparent;
+      border-bottom: 200px solid rgba(177, 62, 255, 0.25);
+      top: 15%;
+      right: 8%;
+      transform: rotate(25deg);
+      filter: blur(12px);
+      animation: rotateSlow 30s infinite linear;
+    }
+    .shape-rect {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(177, 62, 255, 0.2);
+      bottom: 12%;
+      right: 18%;
+      transform: rotate(35deg);
+      filter: blur(28px);
+      animation: moveRect 16s infinite alternate;
+    }
+    
+    @keyframes floatShape {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(30px, -30px) scale(1.05); }
+    }
+    @keyframes rotateSlow {
+      0% { transform: rotate(20deg); }
+      100% { transform: rotate(380deg); }
+    }
+    @keyframes moveRect {
+      0% { transform: translate(0, 0) rotate(35deg); }
+      100% { transform: translate(20px, -20px) rotate(45deg); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    .hero-title {
+      font-family: var(--fuente-titulos);
+      font-weight: 800;
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, #FFFFFF, var(--plata-oscuro), #CFCFFF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 15px rgba(177, 62, 255, 0.4);
+      margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: rgba(230, 230, 240, 0.9);
+      margin-bottom: 2rem;
+    }
+    
+    .btn-neon {
+      display: inline-block;
+      background: transparent;
+      border: 2px solid var(--violeta-neon);
+      color: var(--violeta-neon);
+      font-family: var(--fuente-titulos);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    
+    .btn-neon:hover {
+      background: var(--violeta-neon);
+      color: var(--negro-mate);
+      box-shadow: 0 0 20px var(--violeta-neon);
+    }
+    
+    /* ========== SECCIONES GENÉRICAS ========== */
+    .generic-section {
+      padding: 5rem 0;
+      border-top: 1px solid rgba(177, 62, 255, 0.2);
+    }
+    
+    .section-title {
+      font-family: var(--fuente-titulos);
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--plata);
+    }
+    
+    .section-title span {
+      background: linear-gradient(120deg, var(--violeta-neon), #D594FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--violeta-neon);
+      margin: 0.8rem auto 0;
+      border-radius: 4px;
+    }
+    
+    /* cards para servicios / muestras */
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    
+    .card {
+      background: rgba(30, 30, 36, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 2rem;
+      text-align: center;
+      flex: 1 1 260px;
+      border: 1px solid rgba(177, 62, 255, 0.3);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      border-color: var(--violeta-neon);
+      transform: translateY(-5px);
+    }
+    
+    .card i {
+      font-size: 2.8rem;
+      color: var(--violeta-neon);
+      margin-bottom: 1rem;
+    }
+    
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .testimonial {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.4);
+      border-left: 4px solid var(--violeta-neon);
+      padding: 2rem;
+      border-radius: 28px;
+      font-style: italic;
+    }
+    
+    /* ========== CONTACTO INFORMATIVA ========== */
+    .contact-section {
+      padding: 5rem 0;
+      background: linear-gradient(145deg, #0D0D12 0%, #08080C 100%);
+      border-top: 1px solid rgba(177, 62, 255, 0.3);
+    }
+    
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 260px;
+      background: rgba(30, 30, 36, 0.6);
+      padding: 2rem;
+      border-radius: 32px;
+      border: 1px solid rgba(177, 62, 255, 0.3);
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-item i {
+      font-size: 2rem;
+      color: var(--violeta-neon);
+      width: 45px;
+    }
+    
+    .contact-img {
+      flex: 1;
+      min-width: 260px;
+      border-radius: 32px;
+      overflow: hidden;
+      border: 1px solid rgba(177, 62, 255, 0.4);
+    }
+    
+    .contact-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .footer-mini {
+      text-align: center;
+      padding: 2rem;
+      background: #050507;
+      border-top: 1px solid rgba(177, 62, 255, 0.2);
+      font-size: 0.85rem;
+    }
+    
+    /* responsive */
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; text-align: center; }
+      .hero-title { font-size: 2.4rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .section-title { font-size: 2rem; }
+      .cards-grid { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- AVISO DE VISTA PREVIA -->
+<div class="preview-badge">
+  <i class="fas fa-paintbrush-fine"></i> Vista previa de diseño · La versión final incluirá formulario interactivo, galería de trabajos, más secciones y funcionalidades completas <i class="fas fa-sparkle"></i>
+</div>
+
+<header class="header">
+  <div class="container header-content">
+    <div class="logo-area">
+      <i class="fas fa-moon logo-icon"></i>
+      <span class="logo-text">Luna y Aguja</span>
+    </div>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Sección 1: Hero -->
+  <section class="hero" id="inicio">
+    <div class="hero-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape-triangle"></div>
+      <div class="shape-rect"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Tinta con misticismo<br>y audacia infinita</h1>
+      <p class="hero-subtitle">Diseños únicos que hablan de tu esencia, arte corporal con identidad y poder.</p>
+      <a href="#contacto" class="btn-neon">✨ Contáctanos ✨</a>
+    </div>
+  </section>
+
+  <!-- Sección 2: Servicios destacados (placeholder) -->
+  <section class="generic-section" id="servicios">
+    <div class="container">
+      <h2 class="section-title">Nuestros <span>servicios</span></h2>
+      <div class="cards-grid">
+        <div class="card">
+          <i class="fas fa-dove"></i>
+          <h3>Tatuaje personalizado</h3>
+          <p>Diseño único basado en tu historia y estilo.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-hand-sparkles"></i>
+          <h3>Cover & Rediseño</h3>
+          <p>Transformamos ideas antiguas en arte renovado.</p>
+        </div>
+        <div class="card">
+          <i class="fas fa-palette"></i>
+          <h3>Arte conceptual</h3>
+          <p>Ilustración digital y bocetos personalizados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3: Proceso / Testimonio (placeholder) -->
+  <section class="generic-section" id="proceso" style="background: rgba(177,62,255,0.03);">
+    <div class="container">
+      <h2 class="section-title">Experiencia <span>Luna y Aguja</span></h2>
+      <div class="testimonial">
+        <i class="fas fa-quote-left" style="color: var(--violeta-neon); font-size: 2rem; opacity: 0.6;"></i>
+        <p style="margin-top: 1rem;">“El proceso creativo es tan importante como la obra final. Cada sesión es una colaboración donde el misticismo y la técnica se unen para crear algo eterno.”</p>
+        <p style="margin-top: 1rem; font-weight: bold;">— Luna, Directora creativa</p>
+        <div style="margin-top: 2rem; text-align: center;">
+          <span class="btn-neon" style="font-size: 0.9rem; padding: 0.5rem 1.5rem; cursor: default;">✨ Próximamente galería ✨</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4: Contacto informativa (sin formulario real) -->
+  <section class="contact-section" id="contacto">
+    <div class="container">
+      <h2 class="section-title">Conecta con <span>Luna y Aguja</span></h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div><strong>Estudio creativo</strong><br>Calle Alquimia 42, Colonia Mística, CDMX</div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone-alt"></i>
+            <div><strong>Teléfono / WhatsApp</strong><br>+52 55 4321 9876</div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div><strong>Correo electrónico</strong><br>hola@lunayaguja.art</div>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <div><strong>Horario</strong><br>Mar - Sáb: 11:00 a 20:00 hrs</div>
+          </div>
+        </div>
+        <div class="contact-img">
+          <img src="img/tattoo.jpg" 
+               alt="Ambiente estudio tatuajes" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer-mini">
+  <div class="container">
+    <p>✦ Luna y Aguja · Donde el arte se encuentra con tu esencia ✦</p>
+    <p style="margin-top: 0.5rem; font-size: 0.7rem;">Vista previa de identidad visual | Todos los elementos son muestra conceptual.</p>
+  </div>
+</footer>
+
+<!-- 
+  ======================================================================
+  BLOQUE JSON CON LOS VALORES DE DISEÑO ELEGIDOS
+  ======================================================================
+-->
+<!--
+{
+  "colores": {
+    "primario": "#0A0A0F",
+    "secundario": "#B13EFF",
+    "acento": "#E6E6EA"
+  },
+  "tipografias": {
+    "titulos": "'Montserrat', sans-serif",
+    "texto": "'Open Sans', sans-serif"
+  },
+  "estilo_hero": "geometrico_abstract",
+  "logo_tipografico": true
+}
+-->
+</body>
+</html>
