@@ -152,6 +152,15 @@
       background: radial-gradient(circle at 30% 10%, #0C0C12, #020203);
       overflow: hidden;
       isolation: isolate;
+      background-blend-mode: screen;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(177,62,255,0.08), transparent 70%);
+      pointer-events: none;
     }
     
     .hero-shapes {
@@ -230,12 +239,15 @@
       color: transparent;
       text-shadow: 0 2px 15px rgba(177, 62, 255, 0.4);
       margin-bottom: 1rem;
+      letter-spacing: 1px;
+      animation: fadeHero 1.2s ease;
     }
     
     .hero-subtitle {
       font-size: 1.3rem;
       color: rgba(230, 230, 240, 0.9);
       margin-bottom: 2rem;
+      animation: fadeHero 1.6s ease;
     }
     
     .btn-neon {
@@ -251,6 +263,21 @@
       text-decoration: none;
       transition: var(--transition);
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-neon::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .btn-neon:hover::after {
+      opacity: 1;
     }
     
     .btn-neon:hover {
@@ -308,6 +335,21 @@
       flex: 1 1 260px;
       border: 1px solid rgba(177, 62, 255, 0.3);
       transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(177,62,255,0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
     }
     
     .card:hover {
@@ -334,6 +376,7 @@
       padding: 2rem;
       border-radius: 28px;
       font-style: italic;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     
     /* ========== CONTACTO INFORMATIVA ========== */
@@ -358,6 +401,7 @@
       padding: 2rem;
       border-radius: 32px;
       border: 1px solid rgba(177, 62, 255, 0.3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
     }
     
     .info-item {
@@ -402,6 +446,18 @@
       .hero-subtitle { font-size: 1rem; }
       .section-title { font-size: 2rem; }
       .cards-grid { flex-direction: column; align-items: center; }
+    }
+    @keyframes fadeHero {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
   </style>
 </head>
